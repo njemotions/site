@@ -1,0 +1,2701 @@
+/* === styles.css === */
+@font-face {
+  font-family: 'Colonna MT'; /* Ce nom sera utilisé dans votre CSS */
+  src: url("Fonts/colonna-mt.woff2") format('woff2'),
+       url("Fonts/colonna-mt.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Monotype Corsiva'; /* Ce nom sera utilisé dans votre CSS */
+  src: url("Fonts/MTCORSVA.woff2") format('woff2'),
+       url("Fonts/MTCORSVA.woff") format('woff');
+  font-weight: normal;
+  /* Monotype Corsiva est souvent intrinsèquement italique.
+     Si votre fichier MTCORSIVA.woff2/.woff est déjà la version italique,
+     vous pouvez mettre 'italic' ici. Sinon, laissez 'normal'. */
+  font-style: italic; /* ou normal, selon votre fichier */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Copperplate Gothic Light'; /* Ce nom sera utilisé dans votre CSS */
+  src: url("Fonts/COPRGTL.woff2") format('woff2'),
+       url("Fonts/COPRGTL.woff") format('woff');
+  font-weight: 300; /* 'Light' correspond souvent à une graisse de 300 */
+  font-style: normal;
+  font-display: swap;
+}
+/* --- RESET GÉNÉRAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+  --header-height: 80px; /* ou la hauteur exacte de ton header */
+}
+
+body {
+    scroll-behavior: smooth;
+    width: 100%;
+    background-color: #171717;
+    border: 3px solid white;
+    padding: 3px;
+    
+}
+
+html, body {
+    margin: 0;
+    padding: 0; 
+    overflow-x: hidden;
+    width: 100%;
+}
+
+img, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+
+
+/* --- HEADER & NAVIGATION (Desktop) --- */
+header {
+    position: fixed;
+    top: 0px; 
+    left: 3px;
+    width: calc(100% - 6px);
+    height: auto; /* S'adapte au padding vertical */
+    min-height: 4vw; /* Hauteur minimale */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5vw; 
+    padding-bottom: 0.5vw; 
+    padding-right: 2vw;
+    padding-left: 1vw;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.2);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out, background-color 0.3s ease-in-out;
+    backdrop-filter: blur(4px);
+	
+}
+
+.header-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-top: none; 
+    pointer-events: none;
+}
+
+header.scrolled, header.transparent { /* Combiné car même effet souhaité */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+#header .logo { 
+    display: flex; 
+    align-items: center; /* Mieux pour l'alignement vertical du logo */
+    margin-top: 0; /* Ajusté car header a maintenant padding top/bottom */
+}
+#header .logo img {
+    width: 2.5vw; 
+    height: auto; 
+    max-width: 50px; /* Limite pour grands écrans */
+    min-width: 30px; /* Limite pour petits écrans desktop */
+    z-index: 1001;
+}
+
+/* --- MENU PRINCIPAL (Desktop) --- */
+nav ul { 
+	list-style: none; 
+	display: flex; 
+	justify-content: center; 
+	gap: 25px; /* Un peu plus d'espace */ 
+}
+
+nav ul li { 
+	position: relative; 
+}
+
+nav ul li a {
+    position: relative; 
+	text-decoration: none; 
+	color: #707070;
+    font-family: "Colonna MT"; 
+	font-size: 1.8vw; /* Légèrement réduit */
+    display: inline-block; 
+	transition: color 0.3s ease-in-out;
+	z-index: 1;
+    padding: 5px 0; /* Ajout de padding pour faciliter le survol */
+}
+
+
+nav ul li a::before, nav ul li a::after {
+    content: ""; 
+	position: absolute; 
+	width: 0; 
+	height: 2px;
+    background-color: #707070;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    transition-delay: 0.3s;
+}
+
+
+nav ul li a::before { 
+	top: 0; 
+	left: 0; 
+}
+
+nav ul li a::after { 
+	bottom: 0; 
+	right: 0; 
+}
+
+nav ul li a:hover { 
+	color: #FFFFFF;
+
+
+}
+
+nav ul li a:hover::before, nav ul li a:hover::after { 
+	width: 100%; 
+	background-color: white; 
+}
+
+
+nav ul ul { /* Sous-menus */
+    display: block; 
+	position: absolute; 
+	top: calc(100% + 5px); /* Petit espace */
+    left: 50%; 
+	transform: translateX(-50%); /* Centrer le sous-menu */
+    width: 8vw; /* Un peu plus large */
+    border-radius: 10px; /* Moins arrondi */
+    background-color: rgba(20, 20, 20, 0.3); /* Fond plus opaque */
+    opacity: 0; 
+	visibility: hidden;
+    padding: 5px 0; /* Padding vertical pour les items du sous-menu */
+    transform-origin: top center; /* Animation depuis le haut */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s;
+    /* transition-delay: 0.1s; /* Délai réduit pour l'apparition */
+}
+nav ul li:hover > ul {
+    opacity: 1; 
+	visibility: visible; 
+	transform: translateX(-50%) translateY(0);
+}
+nav ul ul li {
+	padding: 0; 
+	text-align: center; /* Centrer le texte des sous-menus */
+}
+
+nav ul ul li a {
+    font-size: 2vh; /* Taille fixe pour sous-menus */
+    color: #cccccc; /* Couleur moins vive */
+    font-family: "Monotype Corsiva", "Colonna MT", serif; /* Police alternative */
+    padding: 8px 15px; /* Padding pour chaque lien */
+    display: block; /* Pour que le padding s'applique bien */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav ul ul li a:hover { 
+	background-color: rgba(255,255,255,0.1); 
+	color: white; 
+	
+}
+
+nav ul ul li a::before, nav ul ul li a::after { 
+	content: none; 
+}
+
+#nav { display: flex; }
+
+
+#nav ul li.nav-materiel {
+	display: none;
+}
+
+/* --- SECTION ACCUEIL (Desktop) --- */
+#accueil {
+    background-image: url(Images%20site/NJ%20emotions_Vid%C3%A9aste_panasonic%20lumix%20GH5_Drone%20DJI%20mini%202_Canet%20en%20roussillon2.avif);
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid white;
+    padding-top: 7vw; /* header_effective_height + un peu de marge */
+    background-position: center center;
+    background-size: cover;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF;
+    box-shadow: 0px 0px 12px 2px #FFFFFF;
+}
+
+
+#logosoft { 
+	transform: translateY(-5vh); /* Ajusté */ 
+
+}
+
+/* --- SECTION SERVICES PROFESSIONNELS (Desktop) --- */
+#services-pro {
+    background-image: url(Images%20site/BG_services-pro.avif);
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 5vh 3vw 5vh 3vw;
+    box-sizing: border-box;
+    border-bottom: 3px solid white;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF;
+    box-shadow: 0px 0px 12px 2px #FFFFFF;
+}
+
+#services-pro #Titres {
+    width: 45%; /* Un peu plus large */
+    text-align: center;
+    padding-top: 8vh; 
+    margin-bottom: 5vh; /* Plus d'espace avant la carte */
+}
+
+#services-pro #Titres h1 {
+    font-family: "Colonna MT"; 
+	font-size: clamp(96px, 7vw, 172.8px);
+    color: white; 
+	font-weight: lighter; 
+	margin-bottom: -2vw;
+}
+#services-pro #Titres h2 {
+    font-family: "Monotype Corsiva"; 
+	font-size: clamp(35px, 2.5vw, 76.8px);
+    color: #606060; /* Un peu plus foncé */
+}
+
+#services-pro .services-pro-slider-area { 
+    width: 45%; /* La zone de la grille prend 45% de la largeur, alignée à droite par #services-pro */
+    margin-bottom: 0vh;
+}
+#services-pro .services-pro-swiper {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    overflow: visible; 
+}
+
+#services-pro .services-pro-swiper .swiper-wrapper {
+    /* Configuration en grille 2x2 pour DESKTOP */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes de taille égale */
+    grid-template-rows: repeat(2, auto);    /* Deux lignes, hauteur auto */
+    gap: 20px; 
+	width: auto;
+	height: auto;
+    
+}
+
+#services-pro .services-pro-swiper .swiper-slide.service {
+    /* Styles pour chaque service dans la grille DESKTOP */
+    width: 100%;
+    height: auto; /* Hauteur automatique pour s'adapter au contenu */
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Alignement à gauche sur desktop */
+	background-color: transparent; 
+    padding: 10px; /* Un peu de padding interne pour chaque service */
+    box-sizing: border-box;
+	margin-left: 4vw;
+    
+    
+}
+
+/* Cacher la pagination Swiper sur DESKTOP */
+#services-pro .services-pro-swiper .services-pro-pagination {
+    display: none;
+}
+
+
+
+/* Styles pour les H1 et P des services sur DESKTOP (ciblant par ID) */
+#services-pro #corpo h1, #services-pro #promo h1, 
+#services-pro #aftermovie h1, #services-pro #broll h1 {
+    font-family: "Colonna MT"; 
+	font-weight: normal; 
+	font-size: 1.8vw; /* RÉDUIT */
+    color: white;
+	margin-bottom: 0.8vw;
+}
+
+#services-pro #corpo h1 a, #services-pro #promo h1 a, 
+#services-pro #aftermovie h1 a, #services-pro #broll h1 a {
+    text-decoration: none; 
+	color: inherit; 
+	cursor: pointer;
+}
+
+#services-pro #corpo h1 a:hover, #services-pro #promo h1 a:hover, 
+#services-pro #aftermovie h1 a:hover, #services-pro #broll h1 a:hover {
+    color: #cccccc;
+}
+
+#services-pro #corpo p, #services-pro #promo p, 
+#services-pro #aftermovie p, #services-pro #broll p {
+    font-family: 'Monotype Corsiva'; 
+	font-weight: normal; 
+	font-size: 2vh;
+    color: #BDBDBD; 
+	line-height: 1.5; 
+	flex-grow: 1;
+	text-align: left; 
+    width: 75%; 
+    max-height: none; 
+    overflow-y: visible; 
+    padding: 0; 
+}
+
+
+.services-pro-slider-area .services-pro-next-btn,
+ .services-pro-slider-area .services-pro-prev-btn {
+    display: none;
+}
+
+#services-pro #tarifs {
+    width: 35%; 
+    margin-top: 10vh; 
+	margin-right: 5%;
+	padding-top: 15px;
+    font-family: "Copperplate Gothic Light";
+    color: white;
+    text-align: center;
+    font-size: 0.9vw; /* RÉDUIT */
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	
+}
+
+
+
+#services-particuliers {
+    height: 100vh;
+    width: 100%;
+    background-image: url("Images site/BG_services-part.avif");
+    background-size: 107% auto;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: -100px -100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4vh;
+    box-sizing: border-box;
+    position: relative;
+    border-bottom: 3px solid white;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF;
+    box-shadow: 0px 0px 12px 2px #FFFFFF;
+}
+
+#services-particuliers #titres {
+    display: flex; 
+	flex-direction: column; 
+	align-items: center;
+    justify-content: center; 
+	padding-top: 13vw; 
+	width: 40%;
+}
+
+#services-particuliers #titres h1 {
+    font-family: "Colonna MT";
+    font-size: clamp(60px, 7vw, 172.8px);
+    color: white;
+    font-weight: lighter;
+    display: flex;
+    position: relative;
+    text-shadow: 0px 0px 14px;
+}
+
+#services-particuliers #titres h2 {
+    font-family: "Monotype Corsiva";
+	font-size: clamp(25px, 2.5vw, 76.8px);    color: white;
+    margin-bottom: 0;
+    margin-top: 0;
+    top: -2vw;
+    position: relative;
+    text-shadow: 0px 0px 14px;
+}
+
+#services-particuliers .content .gauche h1, #services-particuliers .content .droite h1 {
+    font-family: "Colonna MT"; 
+	font-size: 2vw; 
+	font-weight: lighter;
+    color: white; 
+	white-space: nowrap; 
+	margin-bottom: 1vh;
+	
+}
+
+
+#services-particuliers .content .gauche p, #services-particuliers .content .droite p {
+    font-family: "Monotype Corsiva"; 
+	font-size: 1.1vw; 
+	color: #707070;
+    align-self: flex-start;
+}
+
+#services-particuliers .content {
+    display: flex; 
+	justify-content: space-between; 
+	align-items: flex-start;
+    position: absolute; 
+	width: 100%; 
+	bottom: 4%;
+}
+
+#services-particuliers .content .gauche {
+    width: 20%; 
+	text-align: left; 
+	display: flex; 
+	flex-direction: column;
+    justify-content: flex-start; 
+	padding-left: 3%;
+}
+
+#services-particuliers .content .droite {
+    width: 24%; 
+	text-align: left; 
+	display: flex; 
+	flex-direction: column;
+    justify-content: flex-end; 
+	padding-right: 9%;
+	transform: translateX(5vw);
+}
+
+#services-particuliers .content .droite h1 { 
+	text-align: left; 
+	margin-bottom: auto; 
+}
+
+#services-particuliers .content .gauche .prix1, #services-particuliers .content .droite .prix2 {
+    font-family: "Copperplate Gothic Light"; 
+	color: white;
+    padding-bottom: 10%; 
+	text-align: center;
+}
+
+#services-particuliers .content .gauche .prix1 { 
+	margin-top: -2%; 
+}
+
+
+						/* SECTION PORTFOLIO */
+
+
+
+#portfolio {
+    width: 100%;
+    margin: auto;
+    padding: 50px 0;
+    height: 100vh; /* Prend toute la hauteur de l’écran */
+    display: flex;
+    justify-content: flex-start; /* Centre le carrousel horizontalement */
+    align-items: center; /* Centre le carrousel verticalement */
+    background-image: url(Images%20site/BG_portfolio.avif);
+    background-size: 140% auto;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 4% 22%;
+    position: relative;
+	border-bottom: 3px solid white;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF;
+    box-shadow: 0px 0px 12px 2px #FFFFFF;
+
+}
+
+#portfolio .swiper {
+    width: 50%;
+    height: 500px;
+    display: flex;
+    justify-content: flex-start; /* Aligne les vidéos à gauche */
+    align-items: center;
+	position: absolute;
+	left: 2vw;
+}
+
+#portfolio .mySwiper .swiper-wrapper .swiper-slide h1 {
+	font-family: "Colonna MT";
+	font-weight: lighter;
+	color: white;
+    text-align: center;
+	margin-top: 50px;
+}
+
+#portfolio .mySwiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	flex-direction: column;
+}
+
+#portfolio .mySwiper .swiper-pagination {
+	position: absolute; /* Permet de bien se placer entre les éléments */
+	width: 50%;
+	padding-right: 25%;
+	transform: translate-y(-25%);
+    display: flex;
+    justify-content: flex-end;
+	bottom: 12%;
+	left: 25%;
+}
+
+
+#portfolio .mySwiper .swiper-pagination-bullet {
+    background-color: #FFFFFF; /* Change cette couleur pour ce que tu veux (ex. : orange ici) */
+}
+
+
+#portfolio .mySwiper .swiper-slide iframe {
+    width: 80%;
+    height: auto;
+    border-radius: 50px;
+    aspect-ratio: 16 / 9;
+}
+
+/* Flèches (gauche et droite) */
+#portfolio .mySwiper .swiper-button-next,
+#portfolio .mySwiper .swiper-button-prev {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px; /* Taille des flèches */
+    height: 100px; /* Taille des flèches */
+    position: absolute; /* Pour placer les flèches correctement */
+    z-index: 1001 !important;
+	top: 50%;
+    transform: translateY(-50%);
+}
+
+#portfolio .mySwiper .swiper-button-prev {
+    opacity: 0.3;
+    left: 40px;
+    background-image: url(Images%20site/Fl%C3%A8che%20Gauche.png);
+    
+}
+
+
+#portfolio .mySwiper .swiper-button-next {
+    right: 40px;
+    opacity: 0.3;
+    background-image: url(Images%20site/Fl%C3%A8che%20Droite.png);
+}
+
+
+/* Supprimer les icônes par défaut de Swiper */
+#portfolio .mySwiper .swiper-button-next::after,
+#portfolio .mySwiper .swiper-button-prev::after {
+    display: none;
+}
+
+
+#portfolio .mySwiper .swiper-button-next:hover,
+#portfolio .mySwiper .swiper-button-prev:hover {
+    opacity: 1;
+}
+/* Supprimer les icônes par défaut de Swiper pour le PORTFOLIO */
+#portfolio .mySwiper .swiper-button-next::after,
+#portfolio .mySwiper .swiper-button-prev::after {
+    display: none;
+}
+/* Styles pour le titre de la section Portfolio en DESKTOP */
+#portfolio .mon-travail {
+	display: none;
+	text-shadow: 0px 0px 10px;
+}
+
+
+		
+							/* SECTION MON HISTOIRE */
+
+
+
+#aproposdemoi {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    background-image: url(Images%20site/NJ%20emotions_Vid%C3%A9aste_Drone%20DJI%20mini%202_Canet%20en%20roussillon.avif);
+    background-size: cover; /* Mieux que 100% auto pour remplir */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    position: relative;
+    border-bottom: 3px solid #FFFFFF;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF;
+    box-shadow:  0px 0px 12px 2px #FFFFFF;
+}
+
+
+#photo {
+    position: absolute;
+    height: 85vh;
+    border-radius: 50px;
+    aspect-ration: 1.618;
+    right: 10%;
+    top: 11%;
+    z-index: 10;
+    background-image: url(Images%20site/NJ%20emotions.png);
+    overflow: hidden;
+    -webkit-box-shadow: 20px 20px 43px 10px;
+    box-shadow: 20px 20px 43px 10px;
+}
+
+#aproposdemoi #photo img {
+	object-fit: cover; /* Pour ne pas déformer */
+	object-position: center;
+	width: 100%;
+	height: 100%;
+	
+}
+
+
+
+#aproposdemoi .description {
+    width: 50%; /* L'autre moitié */
+    display: flex; 
+	flex-direction: column;
+    justify-content: center; /* Centrer verticalement */
+	align-items: center;
+    padding: 0 5vw; /* Padding horizontal */
+    box-sizing: border-box;
+}
+#aproposdemoi .description h1 {
+    font-family: "Colonna MT"; 
+	font-weight: lighter; 
+	font-size: clamp(60px, 7vw, 172.8px);
+    margin-bottom: 5vh; 
+	color: white; /* Ajout couleur */
+	text-shadow: 0px 0px 14px;
+}
+#aproposdemoi .description .presentationdemoi {
+    font-family: "Copperplate Gothic Light";
+    color: #ffffff;
+    font-size: 0.9vw; /* Ajusté */
+    text-align: left;
+    width: 100%;
+    line-height: 1.6;
+    margin-bottom: 4vh;
+    text-shadow: 0 0 14px #000000;
+}
+
+
+#aproposdemoi .description .presentationdemoi .highlight {
+  font-family: "Copperplate Gothic Light";
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+
+#aproposdemoi .bouton {
+    position: absolute; /* Plus absolute, intégré au flux de .description */
+    display: flex; 
+	width: 50%; /* S'adapte au contenu */
+    justify-content: center; /* Aligné à gauche */
+	align-items: flex-end;
+	height: 100vh;
+	bottom: 5vh;
+    
+}
+
+#aproposdemoi .bouton a {
+    font-family: "Copperplate Gothic Light";
+    font-size: 1.1vw; /* Ajusté */
+    color: white;
+    background-color: #171717;
+    border: 1px solid #707070; /* Bordure plus fine */
+    border-radius: 25px;
+    padding: 2.5vh 2.5vw; /* Padding au lieu de height/width fixes */
+    text-decoration: none;
+    display: inline-flex; /* Pour s'adapter au contenu */
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-box-shadow: inset 0px 0px 15px;
+    box-shadow: inset 0px 0px 15px;
+}
+
+#aproposdemoi .bouton a:hover { 
+	background-color: #333; 
+	color: #fff; 
+}
+
+
+
+					/* SECTION MATERIEL */
+
+ 
+      
+#materiel {
+    width: 100%;
+    height: 100vh; /* Prend toute la hauteur de la vue */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    border-bottom: 3px solid white;
+    padding-top: 0;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF;
+    box-shadow:  0px 0px 12px 2px #FFFFFF;
+    background-image: url(Images%20site/BG_contact.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 0%;
+	}
+
+/* --- CARROUSEL PRINCIPAL (.main-carousel) --- */
+.main-carousel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Prend l'espace vertical restant */
+    position: relative; 
+	margin-top: 10vh;
+}
+
+/* Titre (MODIFIÉ SELON TA DEMANDE) */
+#materiel .main-carousel > #carousel-heading { 
+    text-align: center;
+    font-family: "Colonna MT", serif;
+	font-size: clamp(70px, 7vw, 172.8px);    
+	font-weight: lighter;
+    color: white;
+    width: 90%;
+    margin: 0 auto;
+    z-index: 20; 
+    position: absolute; 
+	text-shadow: 0px 0px 14px;
+	top: 2vh;
+   
+}
+
+/* Track du carrousel principal (MODIFIÉ SELON TA DEMANDE) */
+.main-carousel > .splide__track {
+    width: 100%; 
+    overflow: hidden; /* Splide le met par défaut */
+}
+
+.main-carousel .splide__track > .splide__list {
+    align-items: center; 
+    height: 100vh; 
+    display: flex;
+	
+}
+
+.main-carousel > .splide__track > .splide__list > .splide__slide {
+    opacity: 0.6;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active {
+    opacity: 1;
+}
+
+.splide-slide-content-wrapper {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1);
+    transition: transform 0.8s ease-in-out;
+    position: relative;
+}
+
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .splide-slide-content-wrapper {
+    transform: scale(1.20);
+    z-index: 10;
+}
+
+/* Conteneur pour le splide imbriqué */
+.nested-splide-container {
+    width: 500px;
+    height: 290px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #333;
+    transition: border 0.5s ease, box-shadow 0.5s ease;
+    position: relative;
+}
+
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .nested-splide-container {
+    border: 3px solid white;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+}
+
+/* --- CARROUSELS IMBRIQUÉS (.nested-splide) --- */
+.nested-splide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.nested-splide .splide__slide img {
+    max-width: 100%;  
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Styles de base pour les flèches des carrousels IMBRIQUÉS (images perso) */
+.nested-splide > .splide__arrows > .splide__arrow {
+    background: none; /* Enlève le fond par défaut si Splide en met un */
+    width: 3em;     /* Taille de tes images de flèche */
+    height: 3em;
+    z-index: 5; 
+	transform: translateY(-60%)!important;
+    /* opacity et transition seront gérés par les états actif/inactif */
+}
+.nested-splide > .splide__arrows > .splide__arrow svg { /* Cacher le SVG par défaut */
+    display: none !important;
+}
+
+.nested-splide > .splide__arrows > .splide__arrow--prev {
+    background-image: url(Images%20site/Fl%C3%A8che%20Gauche.png); /* Ton image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateX(30px); /* Position initiale décalée */
+    transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out, transform 0.7s ease-in-out 0.1s; /* Ajout transform et délai */
+	
+	
+}
+
+.nested-splide > .splide__arrows > .splide__arrow--next {
+    background-image: url(Images%20site/Fl%C3%A8che%20Droite.png); /* Ton image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateX(-30px); /* Position initiale décalée */
+    transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out, transform 0.7s ease-in-out 0.1s; /* Ajout transform et délai */
+}
+
+/* Styles pour la pagination des carrousels IMBRIQUÉS */
+.nested-splide > .splide__pagination { 
+    bottom: 10px; 
+    display: flex !important; 
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 5; 
+    padding: 4px 0;
+    list-style-type: none;
+    margin: 0;
+    transform: translateY(-20px); /* Position initiale décalée vers le haut */
+    transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out, transform 0.7s ease-in-out 0.2s; /* Ajout transform et délai */
+}
+
+/* Par défaut, cacher les flèches (leur conteneur) et la pagination des carrousels imbriqués */
+.nested-splide > .splide__arrows,
+.nested-splide > .splide__pagination {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* La transition principale est sur opacity et visibility, les transforms sont sur les éléments enfants */
+}
+
+/* Afficher et animer les flèches et la pagination SEULEMENT pour le nested-splide dans le SLIDE PRINCIPAL ACTIF */
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .nested-splide > .splide__arrows {
+    opacity: 1; /* Rend le conteneur des flèches visible */
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .nested-splide > .splide__arrows > .splide__arrow--prev,
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .nested-splide > .splide__arrows > .splide__arrow--next {
+    transform: translateX(0); /* Position finale des flèches */
+    opacity: 0.7; /* Opacité normale des flèches (tu l'avais avant) */
+    visibility: visible;
+    pointer-events: auto;
+}
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .nested-splide > .splide__arrows > .splide__arrow:hover {
+    opacity: 1;
+}
+
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .nested-splide > .splide__pagination {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0); /* Position finale de la pagination */
+}
+
+/* Styles des points de pagination */
+.nested-splide .splide__pagination li {
+    display: list-item;
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+.nested-splide .splide__pagination__page {
+    background: rgba(255, 255, 255, 0.5);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 5px;
+    opacity: 0.7;
+    transform: scale(1);
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+}
+.nested-splide .splide__pagination__page.is-active {
+    background: white;
+    transform: scale(1.3);
+    opacity: 1;
+}
+
+/* --- TEXTE DES SLIDES PRINCIPAUX --- */
+.slide-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.8s ease-in-out 0.2s, transform 0.8s ease-in-out 0.2s;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    z-index: 0; 
+    position: relative;
+}
+
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .slide-text-content {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 11;
+}
+
+.slide-text-content h1 {
+    font-family: "Colonna MT", serif;
+    font-size: clamp(25px, 2.5vw, 76.8px);
+    font-weight: lighter;
+    color: white;
+    margin-bottom: 5px;
+	text-shadow: 0px 0px 14px;
+}
+
+.slide-text-content p {
+    font-family: "Monotype Corsiva", cursive;
+font-size: clamp(15px, 0.8vw, 60px);
+    color: #ddd;
+}
+    
+/* --- FLÈCHES PERSONNALISÉES POUR LE CARROUSEL PRINCIPAL UNIQUEMENT --- */
+.main-carousel > .splide__arrows > .splide__arrow {
+    background-color: transparent !important;
+    border: none !important;
+    width: 80px;
+    height: 80px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    z-index: 1001; 
+	transform: translateY(-153%)!important;
+}
+
+.main-carousel > .splide__arrows > .splide__arrow:hover {
+    opacity: 1;
+}
+
+.main-carousel > .splide__arrows > .splide__arrow svg {
+    display: none !important;
+}
+
+.main-carousel > .splide__arrows > .splide__arrow--prev {
+    background-image: url(Images%20site/Fl%C3%A8che%20Gauche.png) !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 3em !important;
+}
+
+.main-carousel > .splide__arrows > .splide__arrow--next {
+    background-image: url(Images%20site/Fl%C3%A8che%20Droite.png) !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 3em !important;
+}
+
+
+
+
+					/* SECTION CONTACT */
+
+
+#contact {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    min-height: 100vh;
+    background-image: url(Images%20site/BG-accueil.avif);
+    border-bottom: 1px solid #FFFFFF; /* Changé de 5px pour cohérence */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+#contact .textes {
+    text-align: center; 
+	margin-bottom: 3vh;
+    /* position: static; display: block; width: auto; height: auto; */
+}
+#contact .Me-contacter {
+    font-family: "Colonna MT"; 
+	font-size: clamp(60px, 7vw, 172.8px);
+    font-weight: lighter; /* Était 10 */ 
+	color: #ffffff; 
+	margin-bottom: 1vh;
+	margin-top: 8vh;
+	text-shadow: 0px 0px 14px;
+}
+
+#contact .joignable {
+    font-family: "Copperplate Gothic Light"; 
+	font-size: clamp(35px, 1.5vw, 80px);  
+    color: #FFFFFF;
+	margin-bottom: 5vh;
+}
+
+
+#contact .contact-links {
+    display: flex; 
+	flex-direction: column; /* Empiler les liens */
+    align-items: center; 
+	gap: 20px; /* Espace entre les liens */
+    font-family: 'Copperplate Gothic Light'; 
+	font-size: clamp(25px, 1.2vw, 65px);  /* Responsive */ 
+	max-font-size: 18px;
+    color: #fff; 
+	margin-bottom: 3vh;
+
+}
+
+#contact .contact-links p { 
+	margin-bottom: 10px;
+}
+
+#contact .contact-links .par.tel, #contact .contact-links .par.mail { position: static; /* Plus absolute */ 
+}
+
+.contact-links .par.mail span, .contact-links .par.tel span {
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+    color: #ddd; /* Plus lisible */
+}
+
+#contact .contact-links .appeler,
+#contact .contact-links .envoyer-mail {
+    font-family: "Copperplate Gothic Light", serif;
+    font-size: clamp(14px, 1.2vw, 65px);  /* Responsive */ 
+    color: white;
+    background-color: #171717;
+    border: 1px solid #707070;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-box-shadow: inset 0px 0px 15px #FFFFFF;
+    box-shadow: inset 0px 0px 15px #FFFFFF;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Effet au survol pour ces boutons */
+#contact .contact-links .appeler:hover,
+#contact .contact-links .envoyer-mail:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+.envoyer-mail { 
+	padding: 2vh 2vw;
+	border-radius: 23px;
+}
+
+.appeler { 
+	margin-bottom: 5vh;
+	padding: 1.8vh 1.8vw;
+	border-radius: 20px;
+}
+
+
+#contact .footer-content-wrapper {
+    margin-top: auto;  /* C'est CE conteneur qui est poussé en bas */
+    width: 100%;       /* Pour qu'il prenne toute la largeur */
+    /* Vous pouvez ajouter d'autres styles ici si ce bloc doit avoir un fond spécifique, etc. */
+}
+
+#contact .social-links-container { /* Nouveau conteneur pour centrer social-links */
+    width: 100%; 
+	display: flex; 
+	flex-direction: row;
+	align-items: flex-end;
+	position: relative;
+}
+#contact .social-links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 6vw;
+    margin-top: 0;
+	margin-bottom: 0; 
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent */
+    backdrop-filter: blur(10px); /* flou */
+    border-top: 1px solid white;
+	border-bottom: 1px solid white;
+    box-sizing: border-box;
+    height: auto;
+    -webkit-box-shadow: 0px 0px 12px 1px #FFFFFF;
+    box-shadow: 0px 0px 12px 1px #FFFFFF;
+}
+
+#contact .social-links .suivez-moi {
+    font-family: "Colonna MT"; 
+	color: #FFFFFF;
+    font-size: clamp(40px, 6vw, 80px); 
+    font-weight: lighter; /* Était 10 */
+	margin: 0;
+	text-align: left;
+    /* background-color, border etc. retirés pour un look plus simple */
+}
+
+#contact .social-links .reseaux {
+    display: flex; 
+	gap: 30px; /* Espace entre les icônes */ 
+	position: absolute; 
+    left: 50%;  
+    top: 50%;  
+    transform: translate(-50%, -50%);
+	
+	
+}
+
+#contact .social-links .reseaux img {
+	width: 50px; 
+	height: 50px; 
+	opacity: 0.7; 
+	transition: opacity 0.3s,  box-shadow 0.3s; 
+	border-radius: 20%;
+	
+	
+}
+
+#contact .social-links .reseaux img:hover {
+    opacity: 1;
+    -webkit-box-shadow: 0px 0px 12px 2px #FFFFFF; /* Votre effet d'éclairage */
+    box-shadow: 0px 0px 12px 2px #FFFFFF;
+}
+
+#contact .infos.bas.de.page {
+    width: 100%; /* Prend toute la largeur de #contact */
+    text-align: center; /* Centre le paragraphe */
+    padding: 15px 0; /* Padding vertical */
+    background-color: #000000;
+    box-sizing: border-box;
+    
+}
+
+#contact .infos.bas.de.page .infos {
+    font-family: "Copperplate Gothic Light"; 
+	color: #707070;
+    font-weight: normal; /* Moins gras */ 
+	font-size: 0.8em; /* Plus petit */
+    white-space: normal; /* Permet le retour à la ligne */
+    padding: 0 10px; /* Pour ne pas coller aux bords */
+  
+}
+
+
+
+				/* --- RESPONSIVE --- */
+				/* --- MENU BURGER POUR MOBILE (Général) --- */
+
+
+.menu-toggle { 
+    display: none; 
+	flex-direction: column; 
+	justify-content: space-around;
+    width: 25px; 
+	height: 20px; 
+	cursor: pointer; 
+	z-index: 1001; 
+	position: absolute; 
+}
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+    
+}
+
+.menu-toggle.is-active .bar:nth-child(1) { 
+	transform: translateY(8px) rotate(45deg); 
+}
+
+.menu-toggle.is-active .bar:nth-child(2) { 
+	opacity: 0; 
+}
+
+.menu-toggle.is-active .bar:nth-child(3) { 
+	transform: translateY(-9px) rotate(-45deg); }
+
+
+
+
+ 
+	/* --- MEDIA QUERIES POUR MOBILE (INFÉRIEUR À 810px) --- */
+@media only screen and (max-width: 960px) and (orientation: portrait) {
+	.main-carousel > .splide__arrows > .splide__arrow--prev {
+    left: 2em !important;
+	}
+
+	.main-carousel > .splide__arrows > .splide__arrow--next {
+		right: 2em !important;
+	}
+	
+	.main-carousel > .splide__arrows > .splide__arrow {
+    background-color: transparent !important;
+    border: none !important;
+    width: 80px;
+    height: 80px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    z-index: 1001; 
+	transform: translateY(-127%)!important;
+}
+	
+	#materiel {
+    background-image: url(Images%20site/BG_contact.avif);
+    background-repeat: no-repeat;
+    background-position: 57% 0%;
+    height: 100vh;
+	
+	}
+
+}
+
+@media only screen and (max-width: 870px) and (orientation: portrait) {
+    
+	#header {
+    height: 60px;
+    padding: 0 15px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-left: 3px solid white;
+	border-right: 3px solid white;
+	border-bottom: 1px solid white;
+  
+    }
+    
+	#header .logo img { 
+		height: auto; 
+		width: 10vw; /* Ajustez selon votre logo */ 
+	}
+	
+    .logo { 
+		display:flex; 
+		align-items:center; 
+		height:100%; 
+		left:0; 
+		padding-top: 1vh;
+	} 
+	
+    .menu-toggle { 
+		display: flex; 
+		right: 15px; 
+		width: 5vw; 
+		height: 3vh;/* Position par rapport au bord */ 
+	}
+
+    #nav {
+        position: fixed; 
+		top: 0; 
+		right: 0; 
+		width: 100%; 
+		height: 100vh;
+        background-color: rgba(10, 10, 10, 0.6); /* Fond plus sombre et opaque */
+        flex-direction: column; 
+		justify-content: center; 
+		align-items: center;
+        transition: transform 0.4s ease-out; 
+        z-index: 999; 
+		backdrop-filter: blur(6px);
+        border-left: 1px solid white; /* Bordure seulement à gauche quand il sort */
+        border-top: none; 
+		border-bottom:none; 
+		border-right: none;
+        box-sizing: border-box;
+		transform: translateX(100%);
+
+    }
+	
+ 
+    #nav.active { 
+		transform: translateX(0);
+	}
+	
+    #nav ul { 
+		flex-direction: column; 
+		text-align: center; 
+		width: 100%; 
+		padding: 0; 
+		gap: 15px;
+	}
+	
+    #nav ul li { 
+		width: 80%; 
+		margin: 0 auto 10px auto; /* Centrer les items et ajouter marge basse */ 
+	}
+	
+    #nav ul li a {
+        font-size: 7vw; 
+		color: #f0f0f0; 
+		padding: 10px 0; 
+		display: block;
+        font-family: "Colonna MT"; 
+		
+    }
+	
+    #nav ul li:last-child a { 
+		border-bottom: none; 
+	}
+	
+    nav ul li a::before, nav ul li a::after { 
+		content: none; 
+	}
+	
+    nav ul ul { 
+		display: none; 
+	}
+	
+   #nav ul li.nav-materiel { 
+        display: list-item;
+	}
+
+    #accueil {
+    background-image: url(Images%20site/BG-accueil-media.avif);
+    background-position: center 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+	}
+	
+    #logosoft { 
+		width: 75vw; 
+		transform: translateY(-6vh);
+	}
+
+    .header-border { /* Moins pertinent si header mobile a ses propres bordures */
+       display: none; /* Ou ajuster pour ne pas surcharger */
+    }
+    
+	
+#services-pro {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        height: auto;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start; 
+        box-sizing: border-box;
+        border-bottom: 3px solid white;
+        padding: 5vh 5vw 5vh 5vw;
+    }
+
+
+    #services-pro #Titres {
+        width: 100%;
+        align-self: center;
+        text-align: center;
+        margin-bottom: 7vh;
+    }
+
+    
+    #services-pro #Titres h1 {
+        font-size: 15vw;
+        color: white;
+        font-family: "Colonna MT";
+
+    }
+
+    
+
+    #services-pro #Titres h2 {
+        font-size: 8vw;
+        margin-top: 0;
+        color: #B0B0B0;
+        font-family: "Monotype Corsiva";
+
+    }
+
+
+    #services-pro .services-pro-slider-area {
+        position: relative;
+        width: 100%;
+        max-width: 85vw;
+        margin: 20px auto;
+
+    }
+
+    
+
+    #services-pro .services-pro-swiper { 
+        width: 100%;
+        max-width: 75vw;
+        margin: 0 auto;
+        display: block;
+        border-radius: 30px;
+        background-color: rgba(28, 28, 28, 0.4);
+        box-shadow: 0px 0px 12px 8px rgba(0, 0, 0, 0.3); 
+        backdrop-filter: blur(3px); 
+        padding: 0px 10px; 
+        overflow: hidden !important;
+        position: relative;
+        height: auto;
+        bottom: 30px;
+
+    }
+
+
+    #services-pro .services-pro-swiper .swiper-wrapper {
+
+        display: flex;
+        align-items: stretch;
+        top: 20px;
+        grid-template-columns: none;
+        grid-template-rows: none;
+        gap: 0;
+        transform: none; 
+        width: auto; 
+        height: auto; 
+
+    }
+
+
+    #services-pro .services-pro-swiper .swiper-slide.service {
+
+        flex-shrink: 0;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 0vh 15px 70px 15px;
+        height: auto;
+        min-height: 45vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: transparent;
+		margin-left: 0 !important;
+
+}
+
+
+
+    
+
+    #services-pro #corpo h1, #services-pro #promo h1,
+    #services-pro #aftermovie h1, #services-pro #broll h1 {
+       font-size: 8vw;  /* TAILLE MOBILE AJUSTÉE */
+        color: white;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        font-family: "Colonna MT";
+        text-align: center;
+
+    }
+
+    
+
+    #services-pro #corpo h1 a, #services-pro #promo h1 a, #services-pro #aftermovie h1 a, #services-pro #broll h1 a {
+
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    #services-pro #corpo p, #services-pro #promo p,
+    #services-pro #aftermovie p, #services-pro #broll p {
+
+       font-size: 5vw; /* TAILLE MOBILE AJUSTÉE */
+        color: #E0E0E0;
+        line-height: 1.5;
+        font-weight: lighter;
+        margin: 0;
+        padding: 0;
+        font-family: "Monotype Corsiva";
+        text-align: center;
+        width: 80%;
+        overflow-y: auto;
+        max-height: 30vh;     
+    
+
+    }
+
+
+     #services-pro .services-pro-swiper .services-pro-pagination {
+
+        display: block; /* Rendre visible */
+        position: absolute;
+        bottom: 20px; /* Ajuster la position */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 5;
+
+    }
+
+    
+
+    #services-pro .services-pro-swiper .services-pro-pagination .swiper-pagination-bullet {
+
+        background-color: #FFFFFF; /* Couleur des puces de pagination */
+        opacity: 0.5;
+        margin: 0 5px; /* Espace entre les puces */
+
+    }
+
+    
+
+    
+
+    #services-pro .services-pro-swiper .services-pro-pagination .swiper-pagination-bullet-active {
+        opacity: 1;
+
+    }
+
+    
+
+    .services-pro-slider-area .services-pro-next-btn,
+    .services-pro-slider-area .services-pro-prev-btn {
+
+        display: block; /* S'assurer qu'elles sont visibles sur mobile */
+        position: absolute;
+        top: 50%; /* Positionnement vertical au centre */
+        transform: translateY(-50%);
+        width: 60px; /* Taille identique au portfolio */
+        height: 60px; /* Taille identique au portfolio */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 10;
+        cursor: pointer;
+        opacity: 0.6; 
+    }
+
+
+   
+    .services-pro-slider-area .services-pro-prev-btn {
+
+    left: -15px;
+    background-image: url(Images%20site/Fl%C3%A8che%20Gauche.png);
+
+    }
+
+
+    .services-pro-slider-area .services-pro-next-btn {
+    right: -15px;
+    background-image: url(Images%20site/Fl%C3%A8che%20Droite.png);
+    }
+
+  
+
+    /* Supprimer les icônes de flèches par défaut de Swiper (::after) pour les Services Pro */
+    .services-pro-slider-area .services-pro-next-btn::after,
+     .services-pro-slider-area .services-pro-prev-btn::after {
+        display: none;
+    }
+	
+	
+    #services-pro #tarifs {
+        width: 90%; max-width: 500px; margin: 0px auto 0 auto; /* Marge haute réduite */ 
+		color: white; 
+        font-size: 3.5vw; /* TAILLE MOBILE AJUSTÉE */
+		padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-family: "Copperplate Gothic Light";
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		margin-top: 5vh;
+	}
+/* Dans votre @media (max-width: 810px) */
+
+#services-particuliers {
+    height: auto; /* La hauteur s'adaptera au contenu */
+    min-height: 100vh; /* Assure qu'elle prend au moins toute la hauteur de l'écran si le contenu est court */
+    display: flex; 
+    flex-direction: column;
+    align-items: center; /* Centre les enfants horizontalement */
+    justify-content: flex-start; /* Aligne le contenu en haut par défaut */
+    padding: 10vh 5vw 5vh 5vw; /* Espace en haut/bas et sur les côtés */
+    background-position: center center; /* Recentrer l'image de fond pour mobile */
+    background-size: cover; /* Assurer que l'image de fond couvre bien */
+    position: relative; /* Maintenir pour le positionnement des enfants si besoin */
+}
+
+#services-particuliers #titres { /* Les titres principaux de la section */
+    width: 100%;
+    max-width: 90vw; /* Limite la largeur pour une meilleure lisibilité */
+    text-align: center;
+    margin-bottom: 5vh; /* Espace avant les cartes de service */
+    padding-top: 0; /* Annule le padding-top du desktop */
+    position: static; /* Annule le positionnement absolu/relatif du desktop */
+}
+
+#services-particuliers #titres h1 {
+    font-size: 13vw; /* Ajusté pour mobile */
+    color: white;
+    font-family: "Colonna MT"; /* Assurez-vous que cette police est lisible en grande taille */
+    font-weight: lighter;
+    margin-bottom: -1.5vw; /* Ajusté */
+}
+
+#services-particuliers #titres h2 {
+    font-size: 7vw; /* Ajusté pour mobile */
+    color: #BDBDBD; /* Un peu plus clair pour le contraste */
+    font-family: "Monotype Corsiva";
+    margin-top: 0;
+    position: static; /* Annule le positionnement du desktop */
+}
+
+#services-particuliers .content { /* Conteneur des deux types de services */
+    display: flex; /* Changé en flex */
+    flex-direction: column; /* Empile les services verticalement */
+    align-items: center; /* Centre les cartes de service si elles ont un max-width */
+    width: 100%;
+    position: static; /* Annule position: absolute du desktop */
+    bottom: auto; /* Annule bottom du desktop */
+}
+
+/* Style commun pour les blocs .gauche et .droite qui deviennent des "cartes" */
+#services-particuliers .content .gauche,
+#services-particuliers .content .droite {
+    width: 100%;
+    max-width: 90vw; /* Ou une valeur comme 450px si vous préférez une largeur fixe max */
+    background-color: rgba(25, 25, 25, 0.3); /* Fond semi-transparent pour la carte */
+    backdrop-filter: blur(4px); /* Effet de flou pour l'élégance */
+    border-radius: 20px; /* Bords arrondis */
+    padding: 25px 20px; /* Espace intérieur confortable */
+    margin-bottom: 30px; /* Espace entre les deux cartes */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Ombre discrète */
+    text-align: center; /* Centre le texte à l'intérieur de la carte */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le h1, prix, p à l'intérieur de la carte */
+}
+	
+	/* DANS VOTRE MEDIA QUERY POUR MOBILE */
+#services-particuliers .content .droite {
+    /* ...tous vos autres styles mobiles pour .droite... */
+    width: 100%; /* S'assure qu'il prend la largeur avant d'appliquer max-width */
+    max-width: 80vw; /* Par exemple, pour qu'il soit visuellement centré */
+                     /* Assurez-vous que cette valeur est la même que pour .gauche si vous voulez la même apparence */
+    padding-right: 20px; /* Réinitialise ou ajuste le padding si celui du desktop (9%) est trop grand */
+    padding-left: 20px;  /* Équilibre le padding pour le centrage du contenu interne */
+    transform: none !important;  /* TRÈS IMPORTANT : Annule le décalage du desktop */
+    /* Optionnellement, pour être sûr que flexbox le centre bien : */
+    align-self: center;
+    /* margin-left: 0; /* S'assurer qu'il n'y a pas de margin-left auto ou autre venant du desktop */
+    /* margin-right: 0; */
+}
+
+/* Assurez-vous que .gauche a aussi un padding symétrique pour le contenu interne en mobile */
+#services-particuliers .content .gauche {
+    /* ...tous vos autres styles mobiles pour .gauche... */
+    width: 100%;
+    max-width: 80vw; /* Même max-width que .droite pour la cohérence */
+    padding-left: 20px;
+    padding-right: 20px; /* Ajout pour la symétrie du contenu interne */
+    transform: none !important; /* Au cas où il y aurait un transform aussi */
+    align-self: center;
+}
+
+#services-particuliers .content .gauche:last-child,
+#services-particuliers .content .droite:last-child {
+    margin-bottom: 0; /* Pas de marge en bas pour la dernière carte */
+}
+
+/* Titres des services ("Avec déplacement", "Sans déplacement") */
+#services-particuliers .content .gauche h1,
+#services-particuliers .content .droite h1 {
+    font-family: "Colonna MT"; 
+    font-size: 8vw; /* Ajusté pour mobile */
+    color: white;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    white-space: normal; /* Permet le retour à la ligne si besoin */
+}
+
+/* Prix */
+#services-particuliers .content .gauche .prix1,
+#services-particuliers .content .droite .prix2 {
+    font-family: "Copperplate Gothic Light"; /* Ou une police plus lisible pour mobile */
+    font-size: 4.5vw; /* Ajusté */
+    color: #E0E0E0;
+    margin-bottom: 20px;
+    padding-bottom: 0; /* Annule le padding-bottom du desktop */
+    text-align: center;
+}
+
+/* Paragraphes de description */
+#services-particuliers .content .gauche p,
+#services-particuliers .content .droite p { /* Correction du sélecteur que j'avais noté dans ma réflexion */
+    font-family: "Monotype Corsiva"; /* Assurez-vous de sa lisibilité sur mobile */
+    /* Vous pouvez envisager une police sans-serif plus standard pour les longs textes sur mobile */
+    /* font-family: Arial, sans-serif; */
+    font-size: 4vw; /* Ajusté */
+    line-height: 1.6; /* Bonne lisibilité */
+    color: #CCCCCC;
+    text-align: center; /* Ou left si vous préférez pour les paragraphes */
+    width: 100%; /* Le paragraphe prend toute la largeur de la carte (moins padding) */
+    align-self: stretch; /* S'assure qu'il prend la largeur si le parent est flex */
+}
+	
+	#portfolio {
+	min-height: 100vh;
+    height: auto;
+    margin: auto;
+    padding: 15vh 0;
+    display: flex;
+    justify-content: flex-start; /* Centre le carrousel horizontalement */
+    align-items: center; /* Centre le carrousel verticalement */
+    background-image: url("Images site/BG_portfolio.avif");
+    background-size: cover;
+    background-position: center;
+	position: relative;
+	flex-direction: column;
+	
+}
+
+	#portfolio .mon-travail {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+
+    margin: 0vh 0 0vh 0;
+
+  }
+
+
+  #portfolio .mon-travail h1 {
+
+    font-family: "Colonna MT";
+
+    font-size: clamp(10vw, 15vw, 20vw);
+
+    font-weight: lighter;
+
+    color: white;
+
+    margin: 0;
+
+  } 
+#portfolio .swiper {
+    width: 90%;
+    height: auto;
+    display: block;
+    justify-content: center; /* Aligne les vidéos à gauche */
+    align-items: center;
+	position: relative;
+	left: 0;
+	padding-top: 15vh;
+	transform: none;
+}
+#portfolio .mySwiper .swiper-wrapper .swiper-slide h1 {
+	font-family: "Colonna MT";
+	font-weight: lighter;
+	color: white;
+    text-align: center;
+	margin: 0;
+	padding: 5vh 0 5vh 0;
+	position: relative;
+}
+
+#portfolio .mySwiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	flex-direction: column;
+}
+#portfolio .mySwiper .swiper-pagination {
+	position: absolute; /* Permet de bien se placer entre les éléments */
+	width: 100%;
+	padding-right: 0;
+	transform: none;
+    display: flex;
+    justify-content: center;
+	bottom: 13vh;
+	left: 0;
+}
+
+
+#portfolio .mySwiper .swiper-pagination-bullet {
+    background-color: #FFFFFF; /* Change cette couleur pour ce que tu veux (ex. : orange ici) */
+}
+
+
+#portfolio .mySwiper .swiper-slide iframe {
+    width: 100%;
+    height: auto;
+	aspect-ratio: 16 / 9;
+    border-radius: 25px;
+	max-width: 100%;
+	display: block;
+}
+
+
+/* Flèches (gauche et droite) */
+#portfolio .swiper.mySwiper .swiper-button-next,
+#portfolio .swiper.mySwiper .swiper-button-prev {
+    width: 50px; /* Taille des flèches */
+    height: 50px; /* Taille des flèches */
+    z-index: 1001 !important;
+	top: 50%;
+	transform: translateY(-50%);
+    transform: none;
+	opacity: 0.8;
+}
+
+#portfolio .mySwiper .swiper-button-prev {
+    left: 5px;
+    
+    
+}
+
+
+#portfolio .mySwiper .swiper-button-next {
+    right: 5px;    
+}
+
+
+  #aproposdemoi {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--header-height, 80px);
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    border: none;
+    padding: 5vh 10vw;
+    background-image: url(Images%20site/NJ%20emotions_Vid%C3%A9aste_Drone%20DJI%20mini%202_Canet%20en%20roussillon_medias4.avif);
+    background-position: center 0%;
+    background-size: cover;
+  }
+
+  #aproposdemoi .description {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+  }
+
+  #aproposdemoi .description h1 {
+    font-size: 9vw;
+    margin-bottom: 5vh;
+	margin-top: 4vh;
+  }
+
+  #aproposdemoi .description .presentationdemoi {
+    font-size: 3vw;
+    width: 100%;
+    margin-bottom: 4vh;
+    text-align: center;
+  }
+  
+  #aproposdemoi .bouton {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-bottom: 0vh;
+  }
+
+  #aproposdemoi .bouton a {
+    font-size: 4vw;
+    padding: 1.5vh 4vw;
+	  border-radius: 15px;
+  }
+
+  #photo {
+    position: static;
+    height: 50vw;
+    width: 40vw;
+    margin: 0 auto 4vh auto;
+    border: medium solid white;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 12px 3px #FFFFFF;
+    box-shadow: 0px 0px 12px 3px #FFFFFF;
+  }
+	
+	
+	
+	#materiel .main-carousel > #carousel-heading { /* Titre "Mon matériel" */
+
+		top: 3vh;
+		 
+	}
+	
+	.nested-splide-container {
+        width: 70vw; 
+        max-width: 420px;
+        aspect-ratio: 500 / 290; 
+        height: auto;
+ 
+    }
+	
+.main-carousel > .splide__track > .splide__list > .splide__slide.is-active .splide-slide-content-wrapper {
+        transform: scale(1.15);
+	
+}
+	
+	.main-carousel > .splide__arrows > .splide__arrow {
+        display: none;
+    
+    }
+
+	
+	.nested-splide > .splide__arrows > .splide__arrow--prev {
+		width: 40px; /* Ajustez la taille des flèches */
+        height: 40px;
+	
+	
+}
+
+	.nested-splide > .splide__arrows > .splide__arrow--next {
+  		width: 40px; /* Ajustez la taille des flèches */
+        height: 40px;
+}
+	
+	#contact {
+		background-image: url(Images%20site/BG-accueil-media.avif);
+		background-position: center 0%;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+}
+@media (max-width: 768px) {
+
+    #contact {
+ 		min-height: 100vh;
+        height: auto;        
+        padding-top: 4vh; /* Réduire l'espacement en haut */
+        padding-bottom: 0vh; /* Ajouter de l'espacement en bas */
+        justify-content: flex-start; /* Aligner le contenu en haut si ça déborde */
+    }
+
+    #contact h1.Me-contacter {
+        font-size: clamp(60px, 7vw, 150px);
+        margin-top: 8vh;
+        margin-bottom: 7vh;
+        /* Si 60px (min du clamp) est trop grand, vous devrez ajuster le clamp lui-même */
+        /* ou surcharger avec une font-size plus petite ici : */
+        /* font-size: 40px !important; */ /* Exemple de surcharge forte si clamp est trop grand */
+    }
+
+    #contact p.joignable {
+        margin-bottom: 4vh;
+        width: 90%; /* Pour éviter que le texte ne colle aux bords */
+        font-size: clamp(18px, 2.5vw, 76.8px);
+		margin-left: 5%;
+		margin-right: 5%;
+    }
+
+    #contact .contact-links {
+        gap: 15px; /* Réduire l'espace entre les éléments de contact */
+        margin-bottom: 4vh;
+        flex-grow: 0; /* Empêcher de grandir excessivement */
+		font-size: clamp(18px, 2.5vw, 76.8px);
+    }
+
+    #contact input.appeler {
+        padding: 1.5vh 3vw; /* Ajuster le padding des boutons */
+        width: 50%; /* Les boutons peuvent prendre plus de largeur */
+        max-width: 200px; /* Mais pas trop */
+		border-radius: 16px;
+        
+    }
+
+	#contact input.envoyer-mail {
+		padding: 1.5vh 3vw; /* Ajuster le padding des boutons */
+		 width: 70%; /* Les boutons peuvent prendre plus de largeur */
+        max-width: 300px; /* Mais pas trop */
+		border-radius: 16px;
+		
+	}
+	
+	
+	#contact .contact-links .appeler {
+    
+    font-size: clamp(20px, 2vw, 65px);  /* Responsive */ 
+    
+	}
+	
+	#contact .contact-links .envoyer-mail {
+	    font-size: clamp(18px, 1.8vw, 65px);  /* Responsive */ 
+	
+	}
+	
+	
+    #contact .social-links {
+        flex-direction: column; /* Empiler "Suivez-moi" et les icônes */
+        align-items: center; /* Centrer les éléments empilés */
+        padding: 15px 3vw; /* Ajuster le padding */
+        text-align: center; 
+		width: 100%;
+		box-sizing: border-box;
+		
+    }
+
+    #contact .social-links .suivez-moi {
+        margin-bottom: 20px;
+		
+    }
+
+    #contact .social-links .reseaux {
+        position: static; /* Annuler le positionnement absolu pour le flux normal */
+        transform: none; /* Annuler la transformation */
+        gap: 30px; /* Ajuster l'espace entre les icônes */
+		padding-bottom: 10px;
+    }
+
+    #contact .social-links .reseaux img {
+        width: 40px; /* Réduire la taille des icônes sociales */
+        height: 40px;
+		opacity: 1;
+		
+		-webkit-box-shadow: 0px 0px 15px #FFFFFF;
+    box-shadow: 0px 0px 15px #FFFFFF;
+    }
+
+    #contact .infos.bas.de.page .infos {
+        /* Le clamp gère la taille, mais si 25px est trop grand : */
+        /* font-size: 12px !important; */ /* Exemple de surcharge forte pour le copyright */
+        line-height: 1; /* Améliorer la lisibilité si le texte est sur plusieurs lignes */
+    }
+}
+
+/* ==========================================================================
+   STYLES POUR PAYSAGE MOBILE ET TABLETTE (MAX ~1199px de large)
+   ========================================================================== */
+
+@media screen and (orientation: landscape) and (max-width: 1199px) {
+
+    /* --- NAV (Paysage Mobile/Tablette) --- */
+    /* Assurez-vous que le lien "Matériel" est visible si le menu mobile est actif */
+    #nav ul li.nav-materiel {
+        display: list-item !important; /* ou 'block' */
+    }
+    /* Si vous utilisez le menu burger sur des tablettes en paysage, 
+       vous pourriez avoir besoin d'ajuster la hauteur/padding du header ici
+       ou la taille des polices dans le menu #nav ouvert. */
+    /* Exemple: 
+    header#header { min-height: 60px; }
+    #nav ul li a { font-size: 4vh; }
+    */
+
+    /* --- ACCUEIL (Paysage Mobile/Tablette) --- */
+    #accueil {
+        /* Le padding-top est déjà géré par le body en mode mobile portrait,
+           en paysage, si le header est plus petit ou différent, ajustez ici. */
+        /* padding-top: 8vh; */ /* Exemple */
+    }
+    #accueil #logosoft {
+        transform: scale(0.7) translateY(-3vh); /* Logo réduit */
+        max-width: 50vw;
+    }
+
+    /* --- SERVICES PROFESSIONNELS (Paysage Mobile/Tablette) --- */
+    #services-pro {
+        display: flex;
+        flex-direction: row;
+		flex-wrap: wrap;        /* Permet à #tarifs de passer en dessous */
+        justify-content: space-between;
+        align-items: center;    /* Centre verticalement la ligne Titres/Slider */
+        height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 3px solid white;
+        padding: 5vh 5vw 5vh 5vw;    
+		position: relative; /* AJOUT: Nécessaire pour positionner #tarifs en absolu par rapport à #services-pro */
+    }
+
+
+    #services-pro #Titres {
+        width: 50%;
+        margin-bottom: 7vh; display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;/* Textes alignés à gauche dans ce bloc */
+        text-align: left;
+        padding-right: 20px;    /* Espace avant le slider */
+        align-self: stretch;  /* Pour que ce bloc prenne toute la hauteur de la ligne flex */
+    }
+
+    
+    #services-pro #Titres h1 {
+        font-size: clamp(50px, 6.5vw, 80px); 
+        color: white;
+        font-family: "Colonna MT";
+
+    }
+
+    
+
+    #services-pro #Titres h2 {
+        font-size: clamp(27px, 3vw, 36px); /* Taille adaptée */
+
+        margin-top: 0;
+        color: #B0B0B0;
+        font-family: "Monotype Corsiva";
+
+    }
+
+
+    #services-pro .services-pro-slider-area {
+        position: relative;
+        width: 50%;
+        max-width: 70vw;
+        margin: 20px auto;
+
+    }
+
+    
+
+    #services-pro .services-pro-swiper { 
+        width: 100%;
+        max-width: 75vw;
+        margin: 0 auto;
+        display: block;
+        border-radius: 30px;
+        background-color: rgba(28, 28, 28, 0.4);
+        box-shadow: 0px 0px 12px 8px rgba(0, 0, 0, 0.3); 
+        backdrop-filter: blur(3px); 
+        padding: 0px 10px; 
+        overflow: hidden !important;
+        position: relative;
+        height: auto;
+        bottom: 10px;
+
+    }
+
+
+    #services-pro .services-pro-swiper .swiper-wrapper {
+
+        display: flex;
+        align-items: stretch;
+        top: 20px;
+        grid-template-columns: none;
+        grid-template-rows: none;
+        gap: 0;
+        transform: none; 
+        width: auto; 
+        height: auto; 
+
+    }
+
+
+    #services-pro .services-pro-swiper .swiper-slide.service {
+
+        flex-shrink: 0;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 0vh 15px 70px 15px;
+        height: auto;
+        min-height: 45vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: transparent;
+		margin-left: 0 !important;
+
+}
+
+
+
+    
+
+    #services-pro #corpo h1, #services-pro #promo h1,
+    #services-pro #aftermovie h1, #services-pro #broll h1 {
+		font-size: clamp(27px, 3vw, 36px);
+        color: white;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        font-family: "Colonna MT";
+        text-align: center;
+
+    }
+
+    
+
+    #services-pro #corpo h1 a, #services-pro #promo h1 a, #services-pro #aftermovie h1 a, #services-pro #broll h1 a {
+
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    #services-pro #corpo p, #services-pro #promo p,
+    #services-pro #aftermovie p, #services-pro #broll p {
+
+       	font-size: clamp(17px, 1.5vw, 36px);
+        color: #E0E0E0;
+        line-height: 1.5;
+        font-weight: lighter;
+        margin: 0;
+        padding: 0;
+        font-family: "Monotype Corsiva";
+        text-align: center;
+        width: 80%;
+        max-height: 30vh;     
+    
+
+    }
+
+
+     #services-pro .services-pro-swiper .services-pro-pagination {
+
+        display: block; /* Rendre visible */
+        position: absolute;
+        bottom: 20px; /* Ajuster la position */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 5;
+
+    }
+
+    
+
+    #services-pro .services-pro-swiper .services-pro-pagination .swiper-pagination-bullet {
+
+        background-color: #FFFFFF; /* Couleur des puces de pagination */
+        opacity: 0.5;
+        margin: 0 5px; /* Espace entre les puces */
+
+    }
+
+    
+
+    
+
+    #services-pro .services-pro-swiper .services-pro-pagination .swiper-pagination-bullet-active {
+        opacity: 1;
+
+    }
+
+    
+
+    .services-pro-slider-area .services-pro-next-btn,
+    .services-pro-slider-area .services-pro-prev-btn {
+
+        display: block; /* S'assurer qu'elles sont visibles sur mobile */
+        position: absolute;
+        top: 50%; /* Positionnement vertical au centre */
+
+        width: 60px; /* Taille identique au portfolio */
+        height: 60px; /* Taille identique au portfolio */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 10;
+        cursor: pointer;
+        opacity: 0.6; 
+    }
+
+
+   
+    .services-pro-slider-area .services-pro-prev-btn {
+
+    left: -25px;
+    background-image: url(Images%20site/Fl%C3%A8che%20Gauche.png);
+
+    }
+
+
+    .services-pro-slider-area .services-pro-next-btn {
+    right: -25px;
+    background-image: url(Images%20site/Fl%C3%A8che%20Droite.png);
+    }
+
+  
+
+    /* Supprimer les icônes de flèches par défaut de Swiper (::after) pour les Services Pro */
+    .services-pro-slider-area .services-pro-next-btn::after,
+     .services-pro-slider-area .services-pro-prev-btn::after {
+        display: none;
+    }
+	
+	
+    #services-pro #tarifs {
+        width: 50%; 
+		max-width: 70vh; 
+		margin: 2vh 7vw 0 7vw; /* Marge haute réduite */ 
+		color: white; 
+		font-size: clamp(10px, 1.2vw, 20px);
+		padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-family: "Copperplate Gothic Light";
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		bottom: 5vh;
+		left: 50%;
+		
+	}
+	
+	 /* --- SERVICES PARTICULIERS (Paysage Mobile/Tablette) --- */
+	
+		#services-particuliers {
+			background-size: 110%;
+			min-height: 100vh;
+			height: auto;
+			padding: 5vh 3vw;
+			background-position: right center;
+    }
+
+	    #services-particuliers .content .gauche h1,
+    	#services-particuliers .content .droite h1 {
+        	font-size: clamp(25px, 3vw, 40px); /* Taille adaptée */
+			margin-bottom: 3vh;
+    }
+    	#services-particuliers .content .gauche .prix1,
+    	#services-particuliers .content .droite .prix2 {
+        	font-size: clamp(11px, 1.5vw, 15px); 
+			padding-bottom: 8px;
+			margin-bottom: 3vh;
+    }
+	
+		#services-particuliers .content .gauche {
+			width: 20%; 
+			text-align: center; 
+			display: flex; 
+			flex-direction: column;
+			justify-content: flex-start; 
+			padding-left: 3%;
+			
+	}
+
+		#services-particuliers .content .droite {
+			width: 24%; 
+			text-align: center; 
+			display: flex; 
+			flex-direction: column;
+			justify-content: flex-end; 
+			padding-right: 9%;
+	}
+
+	
+	#services-particuliers .content .droite h1 { 
+	text-align: center; 
+	
+}
+	
+	#services-particuliers .content .droite .prix2 {
+		margin-top: -2%;
+	}
+
+    	#services-particuliers .content .gauche p,
+    	#services-particuliers .content .droite p {
+        	font-size: clamp(11px, 1.5vw, 15px); /* Texte adapté */	
+    }
+	
+	#services-particuliers .content .droite p {
+		Margin-top: 5vh;
+	}
+	
+	
+	#services-particuliers .content .gauche,
+	#services-particuliers .content .droite {
+		width: 35%;
+	}
+   
+	
+	
+	
+    /* --- PORTFOLIO (Paysage Mobile/Tablette) --- */
+    
+	 #portfolio .swiper { /* Conteneur .mySwiper */
+        width: 60%; /* Swiper un peu plus grand */
+        max-width: 500px; /* Limite pour ne pas être trop large */
+		margin-top: 5vh;
+     
+    }
+	
+	#portfolio .mySwiper .swiper-slide iframe {
+        border-radius: 20px; /* Border-radius diminué */
+    }
+
+	
+	#portfolio .mySwiper .swiper-slide {
+        display: flex;
+        flex-direction: column; /* iframe, puis pagination, puis h1 */
+    }
+    
+	#portfolio .mySwiper .swiper-slide iframe { order: 1; }
+    #portfolio .mySwiper .swiper-pagination {
+        order: 2; /* Pagination après l'iframe */
+        position: relative; /* Dans le flux normal */
+        
+    }
+    #portfolio .mySwiper .swiper-wrapper .swiper-slide h1 { /* Description/titre vidéo */
+        order: 3; /* Titre de vidéo après la pagination */
+        font-size: clamp(20px, 2.5vw, 30px); /* Taille ajustée */
+
+    }
+
+	#portfolio .mySwiper .swiper-button-next,
+    #portfolio .mySwiper .swiper-button-prev {
+        width: 60px; /* Taille des flèches réduite */
+        height: 60px;
+        opacity: 0.6;
+        top: 47%; 
+    }
+    #portfolio .mySwiper .swiper-button-prev { left: 15px; }
+    #portfolio .mySwiper .swiper-button-next { right: 15px; }
+
+	
+	
+	
+	
+    /* --- A PROPOS (aproposdemoi) (Paysage Mobile/Tablette) --- */
+	
+	
+    #aproposdemoi .description {
+		width: 60%; /* Le texte occupe 55-60% */
+		order: 1; /* Texte à gauche */
+        padding: 10vh 20px 0 20px;
+		position: relative;
+        
+    }
+	
+ 	#aproposdemoi .description h1 { /* Titre "À propos" */
+        font-size: clamp(35px, 4.5vw, 60px); /* Taille adaptée */
+        margin-top: 0; /* Descendre un peu via l'alignement du parent */
+        margin-bottom: 2.5vh;
+    }
+
+	
+	#aproposdemoi .description .presentationdemoi {
+        font-size: clamp(10px, 1.2vw, 16px);  
+		line-height: 1.5;
+      
+    }
+
+	#aproposdemoi .bouton { /* Bouton "Contactez-moi" */
+        position: absolute; /* Dans le flux de .description */
+        width: auto;
+		left: 70%;
+		z-index: 1001;
+		
+        
+    }
+    #aproposdemoi .bouton a {
+        font-size: clamp(14px, 1.7vw, 18px); /* Texte du bouton agrandi */
+        border-radius: 10px; /* Border-radius réduit */
+        padding: 2vh 2.2vw;
+    }
+
+	#aproposdemoi #photo {
+        height: 80%;
+        width: 35%;
+        max-width: 250px; /* Limiter la taille max de la photo */
+        
+        border-radius: 15px; /* Border-radius réduit */
+        margin: 5vh -2vw 2vh 10vw;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    }
+
+	
+	
+	
+	
+    /* --- MATERIEL (Paysage Mobile/Tablette) --- */
+	#materiel {
+		height: 100vh;
+		
+		
+	}
+	
+	.splide-slide-content-wrapper { /* Contenu d'une slide (image + texte) */
+        transform: scale(0.4); /* Pas de scale-up par défaut */
+        max-height: 100%;
+        display:flex; flex-direction:column; justify-content:center;
+    }
+
+	 .main-carousel > .splide__track > .splide__list > .splide__slide.is-active .splide-slide-content-wrapper {
+        transform: scale(0.7); /* Zoom très léger */
+    }
+
+	.main-carousel > .splide__arrows > .splide__arrow {
+        width: 60px; height: 60px;
+        top: 55%; transform: translateY(-40%);
+    }
+    .main-carousel > .splide__arrows > .splide__arrow--prev { 
+		left: 1em !important; 
+	}
+	
+    .main-carousel > .splide__arrows > .splide__arrow--next { 
+		right: 1em !important;
+	}
+	
+	 #materiel .main-carousel > #carousel-heading { /* Titre "Mon matériel" */
+        font-size: clamp(45px, 5vw, 60px); /* Taille réduite */
+		
+    }
+
+	
+	.slide-text-content { 
+		margin-top: 4px; 
+	}
+	
+    .slide-text-content h1 { 
+		font-size: clamp(30px, 2.5vw, 50px); 
+		margin-bottom: 3px; 
+	}
+	
+    .slide-text-content p { 
+		font-size: clamp(20px, 2vw, 25px); 
+	}
+	
+	.nested-splide > .splide__arrows > .splide__arrow {
+    width: 50px;     /* Taille de tes images de flèche */
+    height: 50px;
+}
+	
+    /* --- CONTACT (Paysage Mobile/Tablette) --- */
+	#contact {
+		height: 100vh;
+		padding: 10vh 0vw 0 0vw; 
+		
+
+	}
+	
+	#contact .Me-contacter {
+        margin-top: 1vh; margin-bottom: 1vh;
+		font-size: clamp(35px, 5vw, 60px); /* Taille réduite */
+
+    }
+	
+	#contact .joignable {
+        font-size: clamp(13px, 1.5vw, 17px);
+        margin-bottom: 1.5vh; 
+		width: 85%;
+		margin-left: 8%;
+		margin-right: 8%;
+		
+    }
+
+	
+	 #contact .contact-links {
+        gap: 8px; 
+		font-size: clamp(13px, 1.5vw, 17px); 
+		margin-bottom: 1.5vh;
+    }
+	
+	#contact input.appeler,
+    #contact input.envoyer-mail {
+        
+        border-radius: 10px; /* Border radius modifié */
+        
+    }
+	
+    .appeler { 
+		margin-bottom: 1vh; 
+	}
+
+    #contact .footer-content-wrapper { 
+		margin-top: auto; 
+	
+} /* Assure que le bloc footer est en bas */
+    
+    #contact .social-links {
+        padding: 8px 2vw; 
+        flex-direction: row; 
+        justify-content: space-between; align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,0.3); /* Ligne de séparation plus subtile */
+    }
+    #contact .social-links .suivez-moi {
+        font-size: clamp(30px, 4vw, 50px);
+        margin-right: 10px; /* Espace par rapport aux icônes */
+    }
+    #contact .social-links .reseaux { gap: 10px; }
+    #contact .social-links .reseaux img { width: 22px; height: 22px; }
+    
+    #contact .infos.bas.de.page { padding: 6px 0; background-color: #0a0a0a; }
+    #contact .infos.bas.de.page .infos {
+        font-size: clamp(8px, 0.9vw, 10px); line-height: 1.3;
+    }
+
+
+
+	
+} /* Fin de la media query paysage principale */

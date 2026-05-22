@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nj Emotions - Vidéaste</title>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    
+    
+    <!-- Ton CSS personnalisé -->
+    <link rel="stylesheet" href="styles.css">
+	
+	<!-- Splide CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+
+</head>
+
+<body> 
+
+	
+	
+
+	
+<!-- Barre de navigation -->
+<header id="header">
+	
+	<div class="header-border"></div>
+	<div class="logo">
+		<img src="Images site/NJ petit.png" alt=""/>
+	</div>
+	
+	<div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+	
+    <nav id="nav">
+    	<ul>
+        	<li class="nav-accueil"><a href="#accueil">Accueil</a></li>
+			
+            <li class="nav-services-deroulant">
+            	<a href="#services-pro">Services</a>
+                	<ul id="submenu-services-sous">
+                        <li id="sub-pro"><a href="#services-pro">Professionnels</a></li>
+						<li id="sub-part"><a href="#services-particuliers">Particuliers</a></li>
+                   	</ul>
+            </li>
+                
+			<li class="nav-portfolio"><a href="#portfolio">Portfolio</a></li>
+			
+			
+		  <li class="nav-apropos">
+            	<a href="#aproposdemoi">À propos</a>
+					<ul id="submenu-apropos">
+						<li id="sub-moi"><a href="#aproposdemoi">Mon histoire</a></li>
+						<li id="sub-materiel"><a href="#materiel">Mon matériel</a></li>
+					</ul>
+			</li>
+			<li class="nav-materiel"><a href="#materiel">Matériel</a></li>
+			
+            <li class="nav-contact"><a href="#contact">Contact</a></li>
+		</ul>
+	</nav>
+	
+</header>
+
+
+									<!-- Accueil -->
+	
+<section id="accueil">
+	<img src="Images site/LOGO SOFT.png" alt="LOGO SOFT"  id="logosoft"/>
+ </section>
+	
+							
+								<!-- Services Professionnels -->	
+
+<section id="services-pro" class="section">
+    <div id="Titres">
+        <h1>Services</h1>
+        <h2>pour professionnels</h2>
+    </div>
+<div class="services-pro-slider-area"> 
+    <div id="contenu-services" class="swiper services-pro-swiper">
+        <div class="swiper-wrapper">
+            <div class="service swiper-slide" id="corpo">
+                <h1><a href="#portfolio" data-slide-index="1">Film corporate</a></h1>
+                <p>à pour but de valoriser votre entreprise en racontant votre histoire à travers une vidéo impactante qui respecte votre vision ainsi que vos valeurs.</p>
+            </div>
+
+            <div class="service swiper-slide" id="promo">
+                <h1><a href="#portfolio" data-slide-index="2">Film promotionnel</a></h1>
+                <p>présente les points fort de votre entreprise pour attirer de nouveaux clients/collaborateurs. Permet de mettre en avant de nouveaux produits afin de les promouvoir. </p>
+            </div>
+
+            <div class="service swiper-slide" id="aftermovie">
+                <h1><a href="#portfolio" data-slide-index="4">Aftermovie</a></h1>
+                <p>couvre vos ou votre événement afin d'immortaliser le moment présent et le retransmettre en image pour vous permettre de promouvoir vos futurs événements.</p>
+            </div>
+
+            <div class="service swiper-slide" id="broll">
+                <h1><a href="#portfolio" data-slide-index="0">B-roll</a></h1>
+                <p>consiste à illustrer votre savoir faire ou mettre en avant un produit en utilisant des techniques de tournage et de montage différentes pour créer un rendu dynamique, impactant et fluide.</p>
+            </div>
+        </div>
+        <div class="swiper-pagination services-pro-pagination"></div>
+	</div>
+		<div class="swiper-button-next services-pro-next-btn"></div>
+        <div class="swiper-button-prev services-pro-prev-btn"></div>
+    </div>
+	
+
+    <div id="tarifs">À partir de 700€ ttc <br> prix dégressifs à partir de 3 vidéos commandée</div>
+</section>
+	
+	
+						<!-- Services Particuliers -->
+<section id="services-particuliers" class="section">
+	<div id="titres" >
+		<h1>Services</h1>
+		<h2>Pour particuliers</h2>
+	</div>
+  
+    <div class="content">
+        	<div class="gauche">
+				<h1>Avec déplacement</h1>
+				<div class="prix1">( À partir de 900€ ttc )</div>
+				<p>Je me déplace lors de vos événements (mariages, anniversaires, baptêmes, baby shower…) avec tous mon matériel afin de couvrir votre journée/soirée.<br/>
+				Je réalise le montage par la suite afin de transformer cet instant en souvenir intemporel et durable. <br/>
+				Je m'adapte à vous sur tous les points : mon temps de présence en votre compagnie, la durée ainsi que la dynamique du film souhaité sans oublier votre budget. <br/>
+				<br/>Alors n'hésitez plus, contactez moi pour en discuter, je saurais vous écouter et vous proposer une solution à votre image.</p>
+				
+          	</div>
+			
+			<div class="droite">
+				<h1>Sans déplacement</h1>
+				<div class="prix2">( À partir de 450€ ttc )</div>
+				<p>Je m'occupe de transformer vos images (photos et vidéo) en un film chargé en émotions à partir de vos désirs. Faites moi confiance pour vous créer un souvenir durable que vous prendrez plaisir à regarder encore et encore. <br/>
+					<br/>Que ce soit pour un voyage, un événement familial, pour diffuser une vidéo lors d'une journée en particulier, pensez y, contactez moi !</p>
+				
+        	</div>
+	</div>
+</section>
+
+	
+
+    
+<!-- Portfolio -->
+    
+<section id="portfolio" class="section">
+	<div class="mon-travail"><h1>Portfolio</h1></div>
+<div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+            <!-- Vidéo 1 -->
+		  <div class="swiper-slide">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/JuqAXzpIOWk?si=qkWzr1romNVz1DFR" title="YouTube video player" frameborder="0"  allowfullscreen></iframe>
+				<h1>B-roll_Cocktail_La paillotte_Canet-en-Roussillon</h1> 
+        	</div>
+		  
+
+		  <!-- Vidéo 2 -->
+			<div class="swiper-slide">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/50_kG8Ut8YA?si=jjBGdgsseByYuWEG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<h1>Film corporate_La tablée_Lyon</h1>
+			</div>
+		  
+            <!-- Vidéo 3 -->
+		  	<div class="swiper-slide">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/59hGYgyavl8?si=_4Eu1OeyArMqt-fi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<h1>Film promotionnel_LYM Transport_Chambéry</h1>
+            </div>
+		  
+		  <!-- Vidéo 4 -->
+		  <div class="swiper-slide">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/q4RokgEDoow?si=B_uxAFZKE9mZOmC_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<h1>B-roll_La paillotte_Canet-en-Roussillon</h1> 
+        	</div>
+		  
+		  <!-- Vidéo 5 -->
+		  	<div class="swiper-slide">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/pouSdSq5bso?si=5wkZogICaK6858N9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<h1>Aftermovie_La virée Gourmande_Chambéry</h1>
+            </div>
+		  
+			<!-- Vidéo 6 -->
+		  	<div class="swiper-slide">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/KBzA7uY_W00?si=0BBTDcXyBMvo5Glq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<h1>Film promotionnel_Erika's Soins_Canet-en-Roussillon</h1>
+            </div>
+		  
+		  
+		  </div>
+
+        <!-- Boutons de navigation -->
+        <div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+	
+</section>
+
+
+	
+<!-- À propos -->
+	
+<!-- À propos de moi -->
+<section id="aproposdemoi">
+
+
+	<div class="description">
+		<h1>À propos</h1>
+		<p class="presentationdemoi">Je suis Angelica, Vidéaste passionnée, capable de réaliser tous types de projets vidéo. Je suis toujours en quête de nouveauté en matière de tournage / montage, ce qui me permet d'être à la hauteur de vos attentes.<br>
+		<br>Mais une vidéo n'est pas seulement un ensemble de belle prise de vue bien assemblée pour faire joli, c'est aussi et surtout un moyen de véhiculer les émotions / messages que vous voulez transmettre.<br>
+		<br>Ce qui m'anime de mon côté, c'est le partage d'émotions à travers mes vidéos, c'est mon challenge à chaque nouveau projet que je réalise, sans compter ma satisfaction client, <vr>votre</vr> satisfaction.<br>
+		<br>Si vous êtes à la recherche d'un professionnel compétent, disponible et à l'écoute de vos besoins, ne cherchez plus, je suis sans conteste <vr>la</vr> vidéaste qu'il vous faut !<br>
+		<br>N'hésitez pas à me contacter pour, qu'ensemble, nous commençons à travailler sur des vidéos à <span class="highlight">votre</span> image. 
+		</p>
+		
+		
+	</div>
+	
+	<div id="photo"><img src="Images site/NJ emotions.png" alt="njemotions"/></div>
+	<div class="bouton">
+		<a href="#contact">Contactez-moi</a>
+	</div>
+	
+</section>
+	
+	
+
+<!-- À propos de mon matériel -->		
+
+
+<section id="materiel">
+        <section class="splide main-carousel" aria-labelledby="carousel-heading">
+            <h2 id="carousel-heading">Mon matériel</h2>
+
+            <div class="splide__track">
+                <ul class="splide__list">
+
+                    <li class="splide__slide">
+                        <div class="splide-slide-content-wrapper"> <div class="nested-splide-container">
+                                <section class="splide nested-splide" aria-label="Galerie Panasonic Lumix GH5">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                            <li class="splide__slide"><img src="Images site/Camera 1.avif" alt="GH5 Vue 1"/></li>
+                                            <li class="splide__slide"><img src="Images site/Camera 2.avif" alt="GH5 Vue 2"/></li>
+                                            <li class="splide__slide"><img src="Images site/Camera 3.avif" alt="GH5 Vue 3"/></li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="slide-text-content">
+                                <h1>Panasonic Lumix GH5</h1>
+                                <p>Pour toute prise de vue grâce<br>à mes deux objectifs</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="splide__slide">
+                        <div class="splide-slide-content-wrapper">
+                            <div class="nested-splide-container">
+                                <section class="splide nested-splide" aria-label="Galerie Drone DJI mini 2">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                           <li class="splide__slide"><img src="Images site/Drone 1.avif" alt="Test Contain"/></li>
+                                            <li class="splide__slide"><img src="Images site/Drone 2.avif" alt="DJI Mini 2 Vue 2"/></li>
+                                            <li class="splide__slide"><img src="Images site/Drone 3.avif" alt="DJI Mini 2 Vue 3"/></li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="slide-text-content">
+                                <h1>Drone DJI mini 2</h1>
+                                <p>Pour des prises de vues aériennes unique<br>( hors agglomération )</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="splide__slide">
+                        <div class="splide-slide-content-wrapper">
+                            <div class="nested-splide-container">
+                                <section class="splide nested-splide" aria-label="Galerie Stabilisateur DJI Ronin-SC">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                            <li class="splide__slide"><img src="Images site/Stabilisateur 1.avif" alt="Ronin-SC Vue 1"/></li>
+                                            <li class="splide__slide"><img src="Images site/Stabilisateur 2.avif" alt="Ronin-SC Vue 2"/></li>
+                                            <li class="splide__slide"><img src="Images site/Stabilisateur 3.avif" alt="Ronin-SC Vue 3"/></li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="slide-text-content">
+                                <h1>Stabilisateur DJI Ronin-SC</h1>
+                                <p>Pour plus de sécurité lors de<br>certaine prise de vue</p>
+                            </div>
+                        </div>
+                    </li>
+                     </ul>
+            </div>
+        </section>
+    </section>
+
+
+
+<!-- Contact -->
+    
+<section id="contact" class="section">
+			
+  <div class="textes">
+		<h1 class="Me-contacter">Me contacter</h1>
+		<p class="joignable"> Je reste joignable pour toutes demandes d'informations et de devis</p>
+	</div>
+		
+	<div class="contact-links">
+		<p class="par tel"> Par téléphone au : <span>06 67 95 65 72</span></p>
+		<input type="button" class="appeler" value="Appeler" onclick="window.location.href='tel:+33667956572';"/>
+		<p class="par mail">Par mail à : <span>nj.emotions@gmail.com</span></p>
+		
+		<input type="button" class="envoyer-mail" value="Envoyer un mail" onclick="window.location.href='mailto:nj.emotions@gmail.com';"/>
+	</div>
+
+<div class="footer-content-wrapper">
+	<div class="social-links">
+	  <div class="suivez-moi">Suivez-moi</div>
+		  <div class="reseaux">
+			<a href="https://www.facebook.com/Nj.emotions" target="_blank" class="FB">
+			  <img src="Images site/FB.png" alt="FB" />
+			</a>
+			<a href="https://www.instagram.com/nj.emotions/" target="_blank" class="Insta">
+			  <img src="Images site/INSTA.png" alt="INSTA" />
+			</a>
+			<a href="http://www.youtube.com/@Njemotions" target="_blank" class="Youtube">
+			  <img src="Images site/Youtube.png" alt="Youtube" />
+			</a>
+			<a href="https://www.malt.fr/profile/angelicaesposito" target="_blank" class="Malt">
+			  <img src="Images site/MALT.png" alt="MALT" />
+			</a>
+		</div>
+	</div>
+</div>
+
+		
+	
+	<div class="infos bas de page">
+		<p class="infos">© 2025 nj emotions - tous droits réservés     |     nj.emotions - siret : 92022919200017     |     hébergeur du site : o2switch</p>
+	</div>
+	
+</section>
+	
+	
+
+	
+
+<!-- Splide JS -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+	   <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Ton script personnalisé -->
+    <script defer src="script.js"></script>
+
+    
+		
+</body>
+</html>
